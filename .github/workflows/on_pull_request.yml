@@ -32,7 +32,7 @@ jobs:
             ${{ runner.OS }}-node-
 
       - name: Install dependecies
-        run: npm ci
+        run: npm `
 
       - name: run test
         run: npm run test
@@ -40,7 +40,7 @@ jobs:
       - name: if test failed, close PR
         uses: actions/github-script@0.2.0
         with:
-          github-token: ${{secrets.ACTION_SCRIPT_TOKEN}}
+          github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const ref = "${{github.ref}}"
             const pull_number = Number(ref.split("/")[2])
