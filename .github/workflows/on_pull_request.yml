@@ -7,7 +7,7 @@ on:
       - develop
 
 jobs:
-  test:
+  build_and_test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -33,6 +33,12 @@ jobs:
 
       - name: Install dependecies
         run: npm ci
+
+      - name: build webpack
+        run: npm run build --if-present
+
+      - name: build electron app for windows
+        run: npm run build:win
 
       - name: build electron app for windows
         run: npm run build:win
