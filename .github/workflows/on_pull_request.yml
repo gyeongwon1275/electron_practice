@@ -1,0 +1,61 @@
+name: moin-service-admin-frontend CI
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Checkout source code.
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+
+      - name: Install dependecies
+        run: npm ci
+
+      - name: run test code
+        run: npm run test
+
+      - name: if test failed, close PR
+        uses: actions/github-script@0.2.0
+        with:
+          github-token: ${{secrets.ACTION_SCRIPT_TOKEN}}
+          script: |
+            const ref = "${{github.ref}}"
+            const pull_number = Number(ref.split("/")[2])
+
+            await github.pulls.createReview({
+              ...context.repo,
+              pull_number,
+              body: "🚨 테스트 실패, 테스트 코드 확인 바람",
+              event: "REQUEST_CHANGES"
+            })
+
+            await github.pulls.update({
+              ...context.repo,
+              pull_number,
+              state: "closed"
+            })
+
+        if: ${{ failure() }}
