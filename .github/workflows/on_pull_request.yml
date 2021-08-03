@@ -34,6 +34,12 @@ jobs:
       - name: Install dependecies
         run: npm ci
 
+      - name: run webpack build
+        run: npm run build
+
+      - name: run electron build for window
+        run: npm run build:win
+
       - name: run test
         run: npm run test
 
