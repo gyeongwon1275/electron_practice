@@ -32,7 +32,7 @@ jobs:
             ${{ runner.OS }}-node-
 
       - name: Install dependecies
-        run: npm `
+        run: npm ci
 
       - name: run test
         run: npm run test
