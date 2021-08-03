@@ -46,11 +46,13 @@ jobs:
           sudo apt update
           sudo apt-get install -y --install-recommends winehq-devel
           sudo apt-get install -y fakeroot
-          
+
       - name: run webpack build
         run: npm run build
 
       - name: run electron build for window
+        env: 
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npm run build:win
 
       - name: run test
