@@ -103,7 +103,7 @@
     "electron-dev": "concurrently \"BROWSER=none ELECTRON_DISABLE_SECURITY_WARNINGS=true npm start\" \"wait-on http://localhost:3000 && electron .\"",
     "build:win": "electron-builder build --win",
     "build:mac": "electron-builder build --mac --x64",
-    "dist": "electron-builder --publish always",
+    "dist": "electron-builder --win --publish always",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage"
@@ -128,11 +128,6 @@
     },
     "win": {
       "icon": "build/icon.png",
-      "publish": {
-        "provider": "s3",
-        "bucket": "electron-practice",
-        "region": "ap-northeast-2"
-      },
       "target": [
         {
           "target": "nsis",
