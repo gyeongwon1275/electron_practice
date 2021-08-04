@@ -53,13 +53,9 @@ jobs:
       - name: run electron build for window
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npm run build:win
-
-      - name: publish to AWS S3
-        env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: npm run dist
+        run: npm run build:win
 
       - name: run test
         run: npm run test

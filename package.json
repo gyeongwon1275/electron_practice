@@ -1,6 +1,6 @@
 {
   "name": "moin-service-admin-frontend",
-  "version": "1.0.11-snapshot",
+  "version": "1.0.2",
   "private": true,
   "main": "public/electron.js",
   "description": "msaa",
@@ -101,7 +101,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "electron-dev": "concurrently \"BROWSER=none ELECTRON_DISABLE_SECURITY_WARNINGS=true npm start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build:win": "electron-builder build --win --x64",
+    "build:win": "electron-builder build --win",
     "build:mac": "electron-builder build --mac --x64",
     "dist": "electron-builder --publish always",
     "test": "jest",
@@ -127,6 +127,7 @@
       "icon": "build/icon.png"
     },
     "win": {
+      "icon": "build/icon.png",
       "publish": {
         "provider": "s3",
         "bucket": "electron-practice",
