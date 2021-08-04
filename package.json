@@ -101,7 +101,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "electron-dev": "concurrently \"BROWSER=none ELECTRON_DISABLE_SECURITY_WARNINGS=true npm start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build:electron": "electron-builder build",
+    "build:win": "electron-builder build --win --x64",
     "build:mac": "electron-builder build --mac --x64",
     "dist": "electron-builder --publish always",
     "test": "jest",
