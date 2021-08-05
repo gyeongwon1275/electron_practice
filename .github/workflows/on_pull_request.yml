@@ -37,12 +37,6 @@ jobs:
       - name: run webpack build
         run: npm run build
 
-      - name: run electron build for mac
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
-        run: npm run build:mac
-
       - name: run test
         run: npm run test
 

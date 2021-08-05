@@ -52,13 +52,6 @@ jobs:
       - name: run test
         run: npm run test
 
-      - name: run publish to S3
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: npm run dist:s3
-
       - name: if test failed, close PR
         uses: actions/github-script@0.2.0
         with:
@@ -81,3 +74,10 @@ jobs:
             })
 
         if: ${{ failure() }}
+
+      - name: run publish to S3
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: npm run dist:s3
