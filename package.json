@@ -1,6 +1,6 @@
 {
   "name": "moin-service-admin-frontend",
-  "version": "1.0.2",
+  "version": "1.0.2-snapshot",
   "private": true,
   "main": "public/electron.js",
   "description": "msaa",
@@ -116,7 +116,6 @@
   },
   "build": {
     "appId": "com.themoin-msaa.apple-pie",
-    "extends": null,
     "extraMetadata": {
       "main": "build/electron.js"
     },
