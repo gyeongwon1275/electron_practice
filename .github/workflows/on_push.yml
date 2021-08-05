@@ -62,24 +62,17 @@ jobs:
             const ref = "${{github.ref}}"
             const pull_number = Number(ref.split("/")[2])
 
-            await github.pulls.createReview({
+              github.pulls.createReview({
               ...context.repo,
               pull_number,
               body: "🚨 테스트 실패, 테스트 코드 확인 바람",
               event: "REQUEST_CHANGES"
             })
 
-            await github.pulls.update({
-              ...context.repo,
-              pull_number,
-              state: "closed"
-            })
-
         if: ${{ failure() }}
 
       - name: run publish to S3
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: npm run dist:s3
