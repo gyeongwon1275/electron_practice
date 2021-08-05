@@ -1,6 +1,6 @@
 {
   "name": "moin-service-admin-frontend",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "main": "public/electron.js",
   "description": "msaa",
