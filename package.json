@@ -1,6 +1,6 @@
 {
   "name": "moin-service-admin-frontend",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "private": true,
   "main": "public/electron.js",
   "description": "msaa",
@@ -8,7 +8,7 @@
   "homepage": "./",
   "repository": {
     "type": "git",
-    "url": "https://github.com/themoin/moin-service-admin-frontend"
+    "url": "https://github.com/gyeongwon1275/electron_practice"
   },
   "dependencies": {
     "@babel/core": "7.12.3",
@@ -116,7 +116,6 @@
   },
   "build": {
     "appId": "com.themoin-msaa.apple-pie",
-    "extends": null,
     "extraMetadata": {
       "main": "build/electron.js"
     },
@@ -137,11 +136,18 @@
         }
       ]
     },
-    "publish": {
-      "provider": "s3",
-      "bucket": "electron-practice",
-      "region": "ap-northeast-2"
-    },
+    "publish": [
+      {
+        "provider": "s3",
+        "bucket": "electron-practice",
+        "region": "ap-northeast-2",
+        "publishAutoUpdate": true
+      },
+      {
+        "provider": "github",
+        "repo": "https://github.com/gyeongwon1275/electron_practice"
+      }
+    ],
     "files": [
       "build/**/*",
       "node_modules/**/*"
