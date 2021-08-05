@@ -142,8 +142,7 @@
       {
         "provider": "s3",
         "bucket": "electron-practice",
-        "region": "ap-northeast-2",
-        "publishAutoUpdate": true
+        "region": "ap-northeast-2"
       }
     ],
     "files": [
