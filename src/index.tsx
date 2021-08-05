@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 ReactDOM.render(
-  <div>{`김경원 test 3 ${new Date().toLocaleTimeString()}>`}</div>,
+  <div>{`김경원 test 4 ${new Date().toLocaleTimeString()}>`}</div>,
   document.getElementById("root")
 );
 
