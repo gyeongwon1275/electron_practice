@@ -7,7 +7,7 @@ on:
       - develop
 
 jobs:
-  build_test:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -24,6 +24,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache node modules
+        id: node-cache
         uses: actions/cache@v2
         with:
           path: node_modules
@@ -32,7 +33,8 @@ jobs:
             ${{ runner.OS }}-node-
 
       - name: Install dependecies
-        run: npm ci
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm install
 
       - name: run webpack build
         run: npm run build
@@ -48,17 +50,11 @@ jobs:
             const ref = "${{github.ref}}"
             const pull_number = Number(ref.split("/")[2])
 
-            await github.pulls.createReview({
+            github.pulls.createReview({
               ...context.repo,
               pull_number,
               body: "🚨 테스트 실패, 테스트 코드 확인 바람",
               event: "REQUEST_CHANGES"
-            })
-
-            await github.pulls.update({
-              ...context.repo,
-              pull_number,
-              state: "closed"
             })
 
         if: ${{ failure() }}
