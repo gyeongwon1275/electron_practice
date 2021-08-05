@@ -1,14 +1,16 @@
 {
   "name": "moin-service-admin-frontend",
-  "version": "1.0.11",
+  "version": "1.0.6",
   "private": true,
   "main": "public/electron.js",
   "description": "msaa",
-  "author": "dodonmountain",
+  "author": {
+    "name": "moin-frontend"
+  },
   "homepage": "./",
   "repository": {
     "type": "git",
-    "url": "https://github.com/themoin/moin-service-admin-frontend"
+    "url": "https://github.com/gyeongwon1275/electron_practice"
   },
   "dependencies": {
     "@babel/core": "7.12.3",
@@ -101,8 +103,9 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "electron-dev": "concurrently \"BROWSER=none ELECTRON_DISABLE_SECURITY_WARNINGS=true npm start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build:win": "electron-builder build --win --x64",
+    "build:win": "electron-builder build --win",
     "build:mac": "electron-builder build --mac --x64",
+    "dist:s3": "electron-builder --win --publish always",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage"
@@ -115,7 +118,6 @@
   },
   "build": {
     "appId": "com.themoin-msaa.apple-pie",
-    "extends": null,
     "extraMetadata": {
       "main": "build/electron.js"
     },
@@ -125,6 +127,24 @@
       "category": "public.app-category.utilities",
       "icon": "build/icon.png"
     },
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "publish": [
+      {
+        "provider": "s3",
+        "bucket": "electron-practice",
+        "region": "ap-northeast-2"
+      }
+    ],
     "files": [
       "build/**/*",
       "node_modules/**/*"
