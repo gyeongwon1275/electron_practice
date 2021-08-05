@@ -105,7 +105,7 @@
     "electron-dev": "concurrently \"BROWSER=none ELECTRON_DISABLE_SECURITY_WARNINGS=true npm start\" \"wait-on http://localhost:3000 && electron .\"",
     "build:win": "electron-builder build --win",
     "build:mac": "electron-builder build --mac --x64",
-    "dist": "electron-builder --win --publish always",
+    "dist:s3": "electron-builder --win --publish always",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage"
@@ -125,7 +125,8 @@
     "copyright": "Copyright © 2019 Moin. Inc",
     "mac": {
       "category": "public.app-category.utilities",
-      "icon": "build/icon.png"
+      "icon": "build/icon.png",
+      "publish": "github"
     },
     "win": {
       "icon": "build/icon.png",
