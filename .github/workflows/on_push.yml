@@ -23,6 +23,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache node modules
+        id: node-cache
         uses: actions/cache@v2
         with:
           path: node_modules
@@ -31,7 +32,8 @@ jobs:
             ${{ runner.OS }}-node-
 
       - name: Install dependecies
-        run: npm ci
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm install
 
       - name: Install windows dependencies
         run: |
