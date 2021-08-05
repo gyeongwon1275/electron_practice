@@ -1,10 +1,12 @@
 {
   "name": "moin-service-admin-frontend",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "main": "public/electron.js",
   "description": "msaa",
-  "author": "dodonmountain",
+  "author": {
+    "name": "moin-frontend"
+  },
   "homepage": "./",
   "repository": {
     "type": "git",
@@ -142,10 +144,6 @@
         "bucket": "electron-practice",
         "region": "ap-northeast-2",
         "publishAutoUpdate": true
-      },
-      {
-        "provider": "github",
-        "repo": "https://github.com/gyeongwon1275/electron_practice"
       }
     ],
     "files": [
