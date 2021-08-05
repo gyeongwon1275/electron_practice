@@ -40,8 +40,7 @@ jobs:
       - name: run electron build for mac
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+
         run: npm run build:mac
 
       - name: run test
